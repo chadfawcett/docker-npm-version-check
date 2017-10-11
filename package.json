@@ -1,0 +1,19 @@
+{
+  "name": "docker-npm-version-check",
+  "version": "0.1.0",
+  "description": "Verifies package version has been updated for new release",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chadfawcett/docker-npm-version-check.git"
+  },
+  "author": "Chad Fawcett <me@chadf.ca>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chadfawcett/docker-npm-version-check/issues"
+  },
+  "homepage": "https://github.com/chadfawcett/docker-npm-version-check#readme"
+}
