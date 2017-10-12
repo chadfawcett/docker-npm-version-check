@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Verifies package version has been updated for new release",
   "main": "index.js",
+  "bin": {
+    "version-check": "./index.js"
+  },
   "scripts": {
     "test": "jest"
   },
