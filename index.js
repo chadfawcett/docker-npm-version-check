@@ -13,6 +13,12 @@ const exec = util.promisify(require('child_process').exec)
   }
 
   const repo = process.argv[2]
+
+  if (!repo) {
+    console.error('Please provide a docker repository')
+    process.exit(1)
+  }
+
   const { stdout } = await exec(`curl 'https://registry.hub.docker.com/v2/repositories/${repo}/tags/'`)
 
   const tags = JSON.parse(stdout).results.map(i => i.name)
