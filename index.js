@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 
 const util = require('util');
-const packageVersion = require('./package.json').version
 const exec = util.promisify(require('child_process').exec)
 
 ;(async () => {
+  let packageVersion
+  try {
+    packageVersion = require('./package.json').version
+  } catch (e) {
+    console.error('Could not find package.json version')
+    process.exit(1)
+  }
+
   const repo = process.argv[2]
   const { stdout } = await exec(`curl 'https://registry.hub.docker.com/v2/repositories/${repo}/tags/'`)
 
