@@ -9,14 +9,14 @@ const exec = util.promisify(require('child_process').exec)
     packageVersion = require('./package.json').version
   } catch (e) {
     console.error('Could not find package.json version')
-    process.exit(1)
+    return process.exit(1)
   }
 
   const repo = process.argv[2]
 
   if (!repo) {
     console.error('Please provide a docker repository')
-    process.exit(1)
+    return process.exit(1)
   }
 
   const { stdout } = await exec(`curl 'https://registry.hub.docker.com/v2/repositories/${repo}/tags/'`)
@@ -25,6 +25,6 @@ const exec = util.promisify(require('child_process').exec)
 
   if (tags.includes(packageVersion) || tags.includes('v' + packageVersion)) {
     console.error('Please update the package version before publishing.')
-    process.exit(1)
+    return process.exit(1)
   }
 })()
