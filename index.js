@@ -1,8 +1,18 @@
 #!/usr/bin/env node
 
 const util = require('util');
-const exec = util.promisify(require('child_process').exec)
+let exec
+try {
+  const test = require('child_process')
+  console.log({test})
+  exec = util.promisify(test.exec)
+} catch (e) {
+  console.log({e})
+}
 
+console.log(exec())
+
+try {
 ;(async () => {
   let packageVersion
   try {
@@ -20,6 +30,7 @@ const exec = util.promisify(require('child_process').exec)
   }
 
   const { stdout } = await exec(`curl 'https://registry.hub.docker.com/v2/repositories/${repo}/tags/'`)
+  console.log(stdout)
 
   const tags = JSON.parse(stdout).results.map(i => i.name)
 
@@ -28,3 +39,6 @@ const exec = util.promisify(require('child_process').exec)
     return process.exit(1)
   }
 })()
+} catch (e) {
+  console.log({ e })
+}
